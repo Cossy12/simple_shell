@@ -1,56 +1,64 @@
 #include "shell.h"
 
 
-char *_stringedcopy(char *lckbase, char *main_pnt, int n)
+void _outpse(char *vsding)
 {
-	int i, j;
-	char *s = lckbase;
+	int i = 0;
 
-	i = 0;
-	while (main_pnt[i] != '\0' && i < n - 1)
+	if (!vsding)
+		return;
+	while (vsding[i] != '\0')
 	{
-		lckbase[i] = main_pnt[i];
+		_outputfsd(vsding[i]);
 		i++;
 	}
-	if (i < n)
-	{
-		j = i;
-		while (j < n)
-		{
-			lckbase[j] = '\0';
-			j++;
-		}
-	}
-	return (s);
 }
 
-char *_stringedcat(char *lckbase, char *main_pnt, int n)
+int _outputfsd(char c)
 {
-	int i, j;
-	char *s = lckbase;
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
 
-	i = 0;
-	j = 0;
-	while (lckbase[i] != '\0')
-		i++;
-	while (main_pnt[j] != '\0' && j < n)
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
-		lckbase[i] = main_pnt[j];
-		i++;
-		j++;
+		write(2, buf, i);
+		i = 0;
 	}
-	if (j < n)
-		lckbase[i] = '\0';
-	return (s);
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
 }
 
-char *_stringedchr(char *s, char c)
+
+
+int _ouhtput(char c, int vc)
 {
-	do {
-		if (*s == c)
-			return (s);
-	} while (*s++ != '\0');
-	return (NULL);
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
+
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	{
+		write(vc, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
+}
+
+
+
+int _otyput(char *vsding, int vc)
+{
+	int i = 0;
+
+	if (!vsding)
+		return (0);
+	while (*vsding)
+	{
+		i += _ouhtput(*vsding++, vc);
+	}
+	return (i);
 }
 
 

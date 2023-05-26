@@ -3,50 +3,56 @@
 
 
 
-char *_set(char *vs, char b, unsigned int n)
+int main_interconnection(ret_information *main_inf)
 {
-	unsigned int i;
-
-	for (i = 0; i < n; i++)
-		vs[i] = b;
-	return (vs);
+	return (isatty(STDIN_FILENO) && main_inf->filerdn <= 2);
 }
 
 
 
-
-
-void availablee(char **nb)
+int value_is(char c, char *valuef_is)
 {
-	char **a = nb;
-
-	if (!nb)
-		return;
-	while (*nb)
-		free(*nb++);
-	free(a);
+	while (*valuef_is)
+		if (*valuef_is++ == c)
+			return (1);
+	return (0);
 }
 
 
 
-void *_realloc(void *quat_alw, unsigned int pre_qua, unsigned int cur_qua)
+int _i_s_main(int q)
 {
-	char *plat;
+	if ((q >= 'a' && q <= 'z') || (q >= 'A' && q <= 'Z'))
+		return (1);
+	else
+		return (0);
+}
 
-	if (!quat_alw)
-		return (malloc(cur_qua));
-	if (!cur_qua)
-		return (free(quat_alw), NULL);
-	if (cur_qua == pre_qua)
-		return (quat_alw);
-	plat = malloc(cur_qua);
-	if (!plat)
-		return (NULL);
-	pre_qua = pre_qua < cur_qua ? pre_qua : cur_qua;
-	while (pre_qua--)
-		plat[pre_qua] = ((char *)quat_alw)[pre_qua];
-	free(quat_alw);
-	return (plat);
+
+
+int _i_s_fn(char *x)
+{
+	int i, sng = 1, shw = 0, rslt;
+	unsigned int answ = 0;
+
+	for (i = 0;  x[i] != '\0' && shw != 2; i++)
+	{
+		if (x[i] == '-')
+			sng *= -1;
+		if (x[i] >= '0' && x[i] <= '9')
+		{
+			shw = 1;
+			answ *= 10;
+			answ += (x[i] - '0');
+		}
+		else if (shw == 1)
+			shw = 2;
+	}
+	if (sng == -1)
+		rslt = -answ;
+	else
+		rslt = answ;
+	return (rslt);
 }
 
 
