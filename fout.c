@@ -25,35 +25,35 @@ int _prov_errors(char *f)
 
 
 
-void show_issue(ret_information *info, char *estr)
+void show_issue(ret_information *nhytres, char *estr)
 {
-	_outpse(info->n_ma);
+	_outpse(nhytres->n_ma);
 	_outpse(": ");
-	shw_a_l(info->cntlne_, STDERR_FILENO);
+	shw_a_l(nhytres->cntlne_, STDERR_FILENO);
 	_outpse(": ");
-	_outpse(info->aguments_s[0]);
+	_outpse(nhytres->aguments_s[0]);
 	_outpse(": ");
 	_outpse(estr);
 }
 
 
 
-int shw_a_l(int input, int fd)
+int shw_a_l(int innit, int qw)
 {
 	int (*__putchar)(char) = _outpu_ty;
 	int i, count = 0;
 	unsigned int _mnow, npre;
 
-	if (fd == STDERR_FILENO)
+	if (qw == STDERR_FILENO)
 		__putchar = _outputfsd;
-	if (input < 0)
+	if (innit < 0)
 	{
-		_mnow = -input;
+		_mnow = -innit;
 		__putchar('-');
 		count++;
 	}
 	else
-		_mnow = input;
+		_mnow = innit;
 	npre = _mnow;
 	for (i = 1000000000; i > 1; i /= 10)
 	{
@@ -72,25 +72,25 @@ int shw_a_l(int input, int fd)
 
 
 
-char *cnvt_no(long int num, int base, int flags)
+char *cnvt_no(long int nos, int bde, int gfed)
 {
 	static char *rry;
 	static char buffer[50];
 	char gno = 0;
 	char *bvi;
-	unsigned long n = num;
+	unsigned long n = nos;
 
-	if (!(flags & CONVERT_UNSIGNED) && num < 0)
+	if (!(gfed & CONVERT_UNSIGNED) && nos < 0)
 	{
-		n = -num;
+		n = -nos;
 		gno = '-';
 	}
-	rry = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	rry = gfed & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	bvi = &buffer[49];
 	*bvi = '\0';
 	do	{
-		*--bvi = rry[n % base];
-		n /= base;
+		*--bvi = rry[n % bde];
+		n /= bde;
 	} while (n != 0);
 	if (gno)
 		*--bvi = gno;

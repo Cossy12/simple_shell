@@ -17,15 +17,15 @@ void _outpse(char *vsding)
 int _outputfsd(char c)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static char bvsder[WRITE_BUF_SIZE];
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
-		write(2, buf, i);
+		write(2, bvsder, i);
 		i = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[i++] = c;
+		bvsder[i++] = c;
 	return (1);
 }
 
@@ -34,15 +34,15 @@ int _outputfsd(char c)
 int _ouhtput(char c, int vc)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static char bvsder[WRITE_BUF_SIZE];
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
-		write(vc, buf, i);
+		write(vc, bvsder, i);
 		i = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[i++] = c;
+		bvsder[i++] = c;
 	return (1);
 }
 
